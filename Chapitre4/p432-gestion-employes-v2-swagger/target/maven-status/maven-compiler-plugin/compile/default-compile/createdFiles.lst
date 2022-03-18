@@ -1,0 +1,4 @@
+rest/utilities/RestActivator.class
+rest/entities/Employe.class
+rest/ressources/GestionEmploye.class
+rest/ressources/GestionEmploye$1.class

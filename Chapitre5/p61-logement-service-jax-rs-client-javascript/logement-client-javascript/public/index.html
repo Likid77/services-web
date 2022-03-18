@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Logement &Eacute;tudiant - Service JAX-RS &amp; Client JavaScript</title>
+	<script type="text/javascript">
+		var xhr;
+		function init() {
+			alert("Test : la fonction init() fonctionne."); // TEST
+			xhr = new XMLHttpRequest();
+		}
+		function getDetails() {
+			alert("Test : la fonction getDetails() fonctionne."); // TEST
+			var delegation = document.getElementById("delegation");
+			// var url = "http://localhost:8090/logement-service-jax-rs/rest/logements?delegation=" + delegation.value;
+			var url = "http://localhost:8090/logement-service-jax-rs/rest/logements/delegation/" + delegation.value;
+			// window.open(url); // TEST --> Fonctionne.
+			xhr.open("GET", url, true);
+			xhr.send(null);
+			xhr.onreadystatechange = function () {
+				alert("Test : la fonction OnReadyStateChange fonctionne"); // TEST
+				var reference = document.getElementById("reference");
+				var adresse = document.getElementById("adresse");
+				var gouvernorat = document.getElementById("gouvernorat");
+				// if (xhr.readyState === XMLHttpRequest.DONE) {
+				if (xhr.readyState === 4) {
+					alert("xhr.readyState === 4 --> True"); // TEST
+					// if (xhr.status === 200) {
+					if (xhr.status === 0 || (xhr.status >= 200 && status < 400)) {
+						alert("xhr.status === " + xhr.status); // TEST
+						var resultat = JSON.parse(xhr.responseText);
+						reference.value = "";
+						adresse.value = "";
+						gouvernorat.value = "";
+						for (var i in resultat) {
+							reference.value = reference.value + " " + resultat[i].reference;
+							adresse.value = adresse.value + " " + resultat[i].adresse;
+							gouvernorat.value = gouvernorat.value + " " + resultat[i].gouvernorat;
+						}
+					}
+				} else {
+					alert("xhr.status <> 200 --> False & xhr.status = " + xhr.status); // TEST - Cette alerte ne s'affiche pas.
+					alert("Error -> " + xhr.responseText);
+				}
+			}
+		};
+	</script>
+</head>
+
+<body onload="init()">
+	<h1>Logement &Eacute;tudiant - Service JAX-RS &amp; Client
+		JavaScript</h1>
+	<h4>Tahar Remadi - 4NIDS1</h4>
+	<table>
+		<tr>
+			<td>Saisir d&eacute;l&eacute;gation&nbsp;:</td>
+			<td><input type="text" id="delegation" size="10" /> <input type="button" value="OK"
+					onclick="getDetails()" /></td>
+		</tr>
+		<tr>
+			<td>R&eacute;f&eacute;rence&nbsp;:</td>
+			<td><input type="text" readonly="readonly" id="reference" /></td>
+		</tr>
+		<tr>
+			<td>Adresse&nbsp;:</td>
+			<td><textarea id="adresse"></textarea></td>
+		</tr>
+		<tr>
+			<td>Gouvernorat&nbsp;:</td>
+			<td><input type="text" readonly="readonly" id="gouvernorat" /></td>
+		</tr>
+	</table>
+</body>
+
+</html>

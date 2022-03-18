@@ -1,0 +1,9 @@
+tn\esprit\entites\Logement$Type.class
+tn\esprit\entites\RendezVous.class
+tn\esprit\ressources\LogementRessource.class
+tn\esprit\utilities\RestActivator.class
+tn\esprit\ressources\RendezVousRessource.class
+tn\esprit\business\LogementBusiness.class
+tn\esprit\business\RendezVousBusiness.class
+tn\esprit\ressources\RendezVousRessource$1.class
+tn\esprit\entites\Logement.class
