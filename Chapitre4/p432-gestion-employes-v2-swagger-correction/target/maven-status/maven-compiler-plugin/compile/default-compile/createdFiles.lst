@@ -1,7 +1,0 @@
-rest\entities\Employe.class
-rest\entities\Credentials.class
-rest\filters\Secured.class
-rest\ressources\GestionEmploye.class
-rest\filters\AuthenticationFilter.class
-rest\utilities\RestActivator.class
-rest\ressources\AuthenticationEndPoint.class
